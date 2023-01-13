@@ -18,14 +18,22 @@ class ExitSignalHandler:
         """
         self._triggered: bool = False
 
-        signal.signal(signal.SIGINT, self.exit_gracefully)
-        signal.signal(signal.SIGTERM, self.exit_gracefully)
+        signal.signal(signal.SIGINT, self._exit_gracefully)
+        signal.signal(signal.SIGTERM, self._exit_gracefully)
 
-    def exit_gracefully(self, _signum, _frame):
+    def _exit_gracefully(self, _signum, _frame):
         """
         Signal handler
         """
         _logger.warning("[!] got exit signal")
+
+        self.trigger()
+
+    def trigger(self):
+        """
+        Signal handler
+        """
+        _logger.warning("Trigger shutdown")
 
         self._triggered = True
 

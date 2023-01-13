@@ -12,6 +12,6 @@ def test_trigger_ok():
 
     assert shutdown.triggered is False
 
-    shutdown.exit_gracefully(None, None)
+    shutdown.trigger()
 
     assert shutdown.triggered is True
