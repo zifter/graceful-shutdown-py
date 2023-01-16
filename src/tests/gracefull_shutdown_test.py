@@ -1,7 +1,20 @@
 """
-Tests for gracefull shutdown
+Tests for graceful shutdown
 """
-from gracefull_shutdown import ExitSignalHandler
+from graceful_shutdown import ExitSignalHandler
+
+
+def test_trigger_like_signal_ok():
+    """
+    Check correct creation and trigger as signal handler
+    """
+    shutdown = ExitSignalHandler()
+
+    assert shutdown.triggered is False
+
+    shutdown.exit_gracefuly(None, None)
+
+    assert shutdown.triggered is True
 
 
 def test_trigger_ok():

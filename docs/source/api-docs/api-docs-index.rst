@@ -1,7 +1,7 @@
-Gracefull shutdown
+graceful shutdown
 ==============
 
-.. automodule:: gracefull_shutdown
+.. automodule:: graceful_shutdown
    :members:
 
 .. toctree::

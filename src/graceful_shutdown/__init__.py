@@ -1,10 +1,10 @@
 """
-Package with gracefull shutdown functionality
+Package with graceful shutdown functionality
 """
 import signal
 from logging import getLogger
 
-_logger = getLogger("gracefull-shutdown")
+_logger = getLogger("graceful-shutdown")
 
 
 class ExitSignalHandler:
@@ -18,10 +18,10 @@ class ExitSignalHandler:
         """
         self._triggered: bool = False
 
-        signal.signal(signal.SIGINT, self._exit_gracefully)
-        signal.signal(signal.SIGTERM, self._exit_gracefully)
+        signal.signal(signal.SIGINT, self.exit_gracefuly)
+        signal.signal(signal.SIGTERM, self.exit_gracefuly)
 
-    def _exit_gracefully(self, _signum, _frame):
+    def exit_gracefuly(self, _signum, _frame):
         """
         Signal handler
         """
@@ -43,6 +43,12 @@ class ExitSignalHandler:
         Check if exit signal triggered
         """
         return self._triggered
+
+    def __bool__(self) -> bool:
+        """
+        Cast to bool
+        """
+        return self.triggered
 
 
 __all__ = [
